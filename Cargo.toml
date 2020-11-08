@@ -1,7 +1,7 @@
 [package]
 name = "secret-raffle"
 version = "0.1.0"
-authors = ["TomL94 <langer.tom7@gmail.com>", "Itzik Grossman <itzik@enigma.co>"]
+authors = ["TomL94 <langer.tom7@gmail.com>", "Itzik Grossman <itzik@enigma.co>", "Taariq Levack <levackt@users.noreply.github.com>"]
 edition = "2018"
 
 exclude = [
@@ -35,15 +35,16 @@ cranelift = ["cosmwasm-vm/default-cranelift"]
 singlepass = ["cosmwasm-vm/default-singlepass"]
 
 [dependencies]
-cosmwasm-std = { git = "https://github.com/enigmampc/SecretNetwork", tag = "v0.7.0" }
-cosmwasm-storage = { git = "https://github.com/enigmampc/SecretNetwork", tag = "v0.7.0" }
+cosmwasm-std = { git = "https://github.com/enigmampc/SecretNetwork", tag = "v1.0.0" }
+cosmwasm-storage = { git = "https://github.com/enigmampc/SecretNetwork", tag = "v1.0.0" }
 schemars = "0.7"
 serde = { version = "1.0.103", default-features = false, features = ["derive"] }
 snafu = { version = "0.6.3" }
 lazy_static = "1.4.0"
 
 rand_chacha = { version = "0.2.2", default-features = false }
-rand_core = { version =  "0.5.1", default-features = false }
+#rand_core = { version =  "0.5.1", default-features = false }
+rand = { version = "0.7.3" }
 sha2 = { version = "0.9.1", default-features = false }
 
 [dev-dependencies]

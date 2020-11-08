@@ -15,22 +15,20 @@ pub enum HandleMsg {
     },
     EndLottery {
         winner_to_select: u8,
-    },
-    AddToWhitelist {
-        addresses: Vec<HumanAddr>
     }
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
-    // GetCount returns the current count as a json-encoded number
     Joined {
         address: HumanAddr,
     },
     Winner {},
-    Whitelisted {
-        address: HumanAddr,
-    },
+    Config {},
 }
 
+#[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema)]
+pub struct WinnerResponse {
+    pub winner: String,
+}

@@ -2,6 +2,7 @@ pub mod contract;
 pub mod msg;
 pub mod state;
 mod rand;
+pub mod coin_helpers;
 
 #[cfg(target_arch = "wasm32")]
 mod wasm {

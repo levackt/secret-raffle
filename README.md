@@ -1,17 +1,16 @@
 # Secret Raffle
 
-## TESTNET RAFFLE
-
-Post the account you entered with on the rocket.chat channel. We recommend using the account associated with your validator AND adding your validator name with `--memo "name"` when submitting so we can easily identify you. If a winner is selected that was not posted on the rocket.chat, did not have a memo when registering, or is not associated with a validator, a new winner will be selected.
-
-The contract address for the testnet is: `secret1jjwx5eyaz4e4h7w0jyz0dad8e2wm73d8dwkr8c` or label `raffle`
+## DEMO RAFFLE
+Simple raffle demo 
 
 ## Description
 This is a simple raffle game. The 'Raffle Host' will deploy an instance of this contract. 
 
-Anyone can join the raffle, by submitting a transaction from their account. Each account can enter only once.
+Anyone can join the raffle, by submitting a transaction from their account, the more funds you send the greater your odds of winning. 
+You can enter as many times as you like.
 
-When the raffle host decides to end the raffle, a winner will be chosen at random from all the accounts that registered
+When the raffle host decides to end the raffle, a winner will be chosen at random from all the accounts that entered.
+
 
 ## Usage
 
@@ -29,12 +28,6 @@ secretcli tx compute execute '{ "join": { "phrase": "<write something fun here>"
 For example:
 * right: `"5"` 
 * wrong: `5`
-
-#### Am I whitelisted?
-Check if an address is whitelisted for the raffle
-```
-secretcli q compute query <contract-address> '{"whitelisted": {"address": "<your address>"}}'
-```
 
 #### Did I join?
 Check if an address was successfully entered in the raffle
@@ -65,7 +58,37 @@ secretcli tx compute instantiate <code_id> '{"seed": "<some long secret here>"}'
 secretcli tx compute execute <contract-address> '{ "end_lottery": {"winner_to_select": <1-3>} }' --from account
 ```
 
-For more details, check out the [messages module](https://github.com/enigmampc/secret-raffle/blob/master/src/msg.rs).
+#### Javascript
+The /client directory has the above as JS, you can deploy and run a raffle as follows;
+
+```bash
+
+# start docker 
+docker run -it --rm \
+ -p 26657:26657 -p 26656:26656 -p 1317:1317 \
+ -v /Users/taariq/code/enigma-protocol:/root/code \
+ --name secretdev enigmampc/secret-network-sw-dev:v1.0.2
+
+# in a new terminal, start rest-server
+docker exec secretdev \
+  secretcli rest-server \
+  --node tcp://localhost:26657 \
+  --trust-node \
+  --laddr tcp://0.0.0.0:1317 
+
+
+cd client
+
+chmod +x ./scripts/fund_accounts.sh
+
+./scripts/fund_accounts.sh
+
+yarn
+
+yarn deploy-contract
+```
+
+For more details, check out the [messages module](https://github.com/levackt/secret-raffle/blob/master/src/msg.rs).
 
 ### Troubleshooting 
 

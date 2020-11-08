@@ -15,3 +15,5 @@
 .idea
 contract.wasm
 contract.wasm.gz
+
+/client/node_modules
